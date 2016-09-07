@@ -106,7 +106,7 @@ const Element = {
         let node = this.get(index);
 
         node.parentNode.removeChild(node);
-        this.resolveNodes();
+        this.component.resolveElements();
     },
     /**
      * Remove all element nodes from the DOM.
@@ -114,6 +114,7 @@ const Element = {
     removeAll() {
         this.nodes.forEach(node => node.parentNode.removeChild(node));
         this.nodes = [];
+        this.component.resolveElements();
     },
     /**
      * Create a node if a template function is available.
@@ -141,9 +142,7 @@ const Element = {
         if (target && renderedEl) {
             target.appendChild(renderedEl);
 
-            for (let element of this.component.elements.values()) {
-                if (!element.nodes.length || element.template) element.resolveNodes();
-            }
+            this.component.resolveElements();
         }
     }
 };
@@ -195,9 +194,10 @@ const Component = {
 
             }
 
-            for (let element of this.elements.values()) {
-                if (element.nodes.length && element.startup) element.startup();
-            }
+        }
+
+        for (let element of this.elements.values()) {
+            if (element.nodes.length && element.startup) element.startup();
         }
     },
     /**
@@ -240,6 +240,11 @@ const Component = {
         });
 
         return result;
+    },
+    resolveElements() {
+        for (let element of this.elements.values()) {
+            element.resolveNodes();
+        }
     },
     /**
      * Generic event handler.
