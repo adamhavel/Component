@@ -183,11 +183,11 @@ const Component = {
                     this.registeredHandlers[eventType] = handler;
 
                     // Add custom handling for touch events.
-                    if (eventType === 'touchmove' && !this.touches) {
+                    if (eventType === 'pointermove' && !this.touches) {
                         this.touches = {};
-                        this.container.addEventListener('touchstart', ev => {
-                            this.touches.x = ev.touches[0].clientX;
-                            this.touches.y = ev.touches[0].clientY;
+                        this.container.addEventListener('pointerdown', ev => {
+                            this.touches.x = ev.clientX;
+                            this.touches.y = ev.clientY;
                         });
                     }
                 }
@@ -263,10 +263,10 @@ const Component = {
         };
 
         // Add custom data for touch events.
-        if (eventType === 'touchmove') {
+        if (eventType === 'pointermove') {
             let delta = {
-                x: this.touches.x - ev.touches[0].clientX,
-                y: this.touches.y - ev.touches[0].clientY
+                x: this.touches.x - ev.clientX,
+                y: this.touches.y - ev.clientY
             };
 
             ev.isHorizontal = Math.abs(delta.x) > Math.abs(delta.y);
