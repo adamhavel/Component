@@ -1,6 +1,5 @@
 /* ==========================================================================
    Component
-   @author Adam Havel <adam.havel@heureka.cz>
    ========================================================================== */
 
 import utils from 'utils';
@@ -27,9 +26,12 @@ const Element = {
 
         this.component = component;
         this.selector = this.selector || defaultSelector;
-        this.className = (this.selector.indexOf('.') === 0) ? this.selector.substr(1) : null;
         this.handlers = Object.assign(Object.create(null), this.handlers);
         this.actions = Object.assign(Object.create(null), defaultActions, this.actions);
+
+        let selectorChain = this.selector.split(/[\s]?[>~+\s][\s]?/g).reverse();
+
+        this.className = (selectorChain[0].indexOf('.') === 0) ? selectorChain[0].substr(1) : null;
 
         // Bind actions to the element.
         for (let action in this.actions) {

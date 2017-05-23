@@ -3,13 +3,10 @@
 build: node_modules
 
 node_modules:
-	npm install --production
-
-node_modules-dev:
-	npm install --dev
+	npm install
 
 clean:
 	rm -rf node_modules
 
-test: node_modules-dev
+test: node_modules
 	node_modules/.bin/ava test/*.js
