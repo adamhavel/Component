@@ -1,7 +1,7 @@
 {
   "name": "component",
   "description": "Library for creating and managing front-end components",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "private": true,
   "author": "Adam Havel <adam.havel@heureka.cz>",
   "main": "component.js",
@@ -13,12 +13,13 @@
     "utils": "git+ssh://git@stash.srv.czech/fl/utils.git#v0.1.0"
   },
   "devDependencies": {
-    "ava": "0.17.0",
-    "browserlike": "git+ssh://git@stash.srv.czech/fl/browserlike.git#v0.1.0"
+    "ava": "0.19.1",
+    "babel-preset-es2015": "6.18.0",
+    "babel-plugin-transform-regenerator": "6.16.1",
+    "browserlike": "git+ssh://git@stash.srv.czech/fl/browserlike.git"
   },
   "ava": {
     "require": [
-      "babel-register",
       "browserlike"
     ]
   },
