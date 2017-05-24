@@ -29,8 +29,11 @@ const Element = {
         this.handlers = Object.assign(Object.create(null), this.handlers);
         this.actions = Object.assign(Object.create(null), defaultActions, this.actions);
 
+        // Create an array from the selector chain, ordered from the innermost to the outermost.
+        // E.g. "div > #id ~ .class" becomes ['.class', '#id', 'div'].
         let selectorChain = this.selector.split(/[\s]?[>~+\s][\s]?/g).reverse();
 
+        // Extract the element class name from the selector chain if a class is used.
         this.className = (selectorChain[0].indexOf('.') === 0) ? selectorChain[0].substr(1) : null;
 
         // Bind actions to the element.
