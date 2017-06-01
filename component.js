@@ -21,6 +21,9 @@ const Element = {
             },
             deactivate(index = 0) {
                 this.get(index).classList.remove('is-active');
+            },
+            toggle(index = 0) {
+                this.get(index).classList.toggle('is-active');
             }
         };
 
