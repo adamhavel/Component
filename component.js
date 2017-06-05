@@ -23,7 +23,11 @@ const Element = {
                 this.get(index).classList.remove('is-active');
             },
             toggle(index = 0) {
-                this.get(index).classList.toggle('is-active');
+                if (this.actions.isActive(index)) {
+                    this.actions.deactivate(index);
+                } else {
+                    this.actions.activate(index);
+                }
             }
         };
 

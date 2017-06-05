@@ -1,7 +1,7 @@
 {
   "name": "component",
   "description": "Library for creating and managing front-end components",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": true,
   "author": "Adam Havel <adam.havel@heureka.cz>",
   "main": "component.js",
