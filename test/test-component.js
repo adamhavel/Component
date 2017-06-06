@@ -1,5 +1,5 @@
 import test from 'ava';
-import Hub from '../component';
+import Hub from '../component.js';
 
 document.body.innerHTML = `
 <section class="js-component" tabindex="-1">
